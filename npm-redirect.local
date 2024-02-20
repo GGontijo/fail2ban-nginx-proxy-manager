@@ -1,0 +1,12 @@
+#Configuration to ban anyone who falls into the nginx proxy manager default (unmapped subdomains or direct http access on public IP)
+#/etc/fail2ban/jail.d/npm-redirect.local
+
+enabled = true
+chain=INPUT
+maxretry = 1
+bantime = 168h # 7 days
+findtime = 48h
+logpath = /root/nginx/data/logs/default-host_access.log
+
+action = iptables[name=npm, port=0:65353, protocol=tcp]
+         #telegram #Disbled for my mental sanity
