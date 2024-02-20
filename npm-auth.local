@@ -1,0 +1,11 @@
+#/etc/fail2ban/jail.d/npm-auth.local
+
+[npm-auth]
+enabled = true
+chain=INPUT
+maxretry = 2
+bantime = 168h #7 days
+findtime = 24h
+logpath =/root/nginx/data/logs/proxy-host-*_error.log
+action = iptables[name=npm, port=0:65353, protocol=tcp]
+         telegram
